@@ -28,7 +28,7 @@ jobs:
       if: success()
       uses: peter-evans/create-pull-request@v3
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.PRTOKENS }}
         branch: main
         commit-message: "Automatically created PR after successful tests"
         title: "Automated PR: Test Passes"
