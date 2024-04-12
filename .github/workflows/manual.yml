@@ -2,8 +2,7 @@ name: Tests Unitaires
 
 on:
   push:
-    branches:
-      - dev
+    branches: [ "dev" ]
 
 jobs:
   test:
