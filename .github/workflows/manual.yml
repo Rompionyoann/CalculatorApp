@@ -19,17 +19,17 @@ jobs:
           npm install
       - name: Exécution des tests
         run: npm test
-create-pull-request:
-  needs: test
-  runs-on: ubuntu-latest
-  if: success()
-  steps:
-    - name: Check out repository code
-      uses: actions/checkout@v2
-    - name: Create Pull Request
-      uses: repo-sync/pull-request@v2
-      with:
-        destination_branch: main
-        github_token: ${{ secrets.PRTOKENS }}
-        pr_label: test pr
-        pr_title: test pr
+  create-pull-request:
+    needs: test
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Create Pull Request
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: main
+          github_token: ${{ secrets.PRTOKENS }}
+          pr_label: test pr
+          pr_title: test pr
