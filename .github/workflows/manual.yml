@@ -16,7 +16,7 @@ jobs:
     - name: Configuration de l'environnement Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '21.1.0'
         cache: 'npm'
 
     - name: Installation des dépendances
