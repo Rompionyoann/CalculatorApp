@@ -1,0 +1,37 @@
+name: Tests Unitaires
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout du code
+      uses: actions/checkout@v2
+
+    - name: Configuration de l'environnement Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+        cache: 'npm'
+
+    - name: Installation des dépendances
+      run: |
+        npm install jest
+
+    - name: Exécution des tests
+      run: npm test
+
+    - name: Créer une pull request vers main si les tests réussissent
+      if: success()
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: main
+        commit-message: "Automatically created PR after successful tests"
+        title: "Automated PR: Test Passes"
+        body: "Les tests unitaires ont réussi, cette pull request a été créée automatiquement."
